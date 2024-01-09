@@ -2408,12 +2408,13 @@ class State:
                     self, manager.metastore, manager.options, self.type_map()
                 )
 
-            self.free_state()
+            # self.free_state()
             if not manager.options.fine_grained_incremental and not manager.options.preserve_asts:
                 free_tree(self.tree)
         self.time_spent_us += time_spent_us(t0)
 
     def free_state(self) -> None:
+        print("WARNING: free_state called")
         if self._type_checker:
             self._type_checker.reset()
             self._type_checker = None
